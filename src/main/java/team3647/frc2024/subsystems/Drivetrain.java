@@ -1,5 +1,7 @@
 // Created By Aaron Nayki 
 package team3647.frc2024.subsystems;
+import com.revrobotics.CANSparkMax;
+
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive.WheelSpeeds;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
@@ -12,11 +14,11 @@ public class Drivetrain implements PeriodicSubsystem {
         public double rightSpeed=0;
     }
 
-    private final MotorController leftMotor;
-    private final MotorController rightMotor;
+    private final CANSparkMax leftMotor;
+    private final CANSparkMax rightMotor;
     private final PeriodicIO periodicIO = new PeriodicIO();
 
-    public Drivetrain(MotorController leftMotor, MotorController rightMotor) {
+    public Drivetrain(CANSparkMax leftMotor, CANSparkMax rightMotor) {
         this.leftMotor = leftMotor;
         this.rightMotor = rightMotor;
     }
