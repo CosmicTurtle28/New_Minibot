@@ -21,6 +21,7 @@ public class Drivetrain implements PeriodicSubsystem {
     public Drivetrain(CANSparkMax leftMotor, CANSparkMax rightMotor) {
         this.leftMotor = leftMotor;
         this.rightMotor = rightMotor;
+
     }
     @Override
     public void writePeriodicOutputs() {

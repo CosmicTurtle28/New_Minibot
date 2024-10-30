@@ -7,24 +7,27 @@ package team3647.frc2024.robot;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.Commands;
 import team3647.frc2024.Commands.DrivetrainCommands;
 import team3647.frc2024.subsystems.Drivetrain;
+import team3647.lib.inputs.Joysticks;
 
 public class RobotContainer {
   CANSparkMax leftMotor = new CANSparkMax(4, MotorType.kBrushless);
-  CANSparkMax rightMotor = new CANSparkMax(4, MotorType.kBrushless);
-  Drivetrain dt = new Drivetrain(leftMotor, null);
+  CANSparkMax rightMotor = new CANSparkMax(5, MotorType.kBrushless);
+  Drivetrain dt = new Drivetrain(leftMotor, rightMotor);
   DrivetrainCommands dtc = new DrivetrainCommands(dt);
+  Joysticks controller = new Joysticks(0);
   public RobotContainer() {
     CommandScheduler.getInstance().registerSubsystem(dt);
     configureBindings();
   }
 
   private void configureBindings() {
-    dt.setDefaultCommand(dtc.drive(leftstick, rightstick));
+    dt.setDefaultCommand(dtc.drive(controller::getLeftStickY,controller::getRightStickX));
   }
 
   public Command getAutonomousCommand() {
